@@ -1,650 +1,1697 @@
-<!DOCTYPE *html*>
-
-<html *lang*="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 
 <head>
-
-    <meta *charset*="UTF-8">
-
-    <meta *name*="viewport" *content*="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Minha Conveniência</title>
 
-    <link *rel*="icon" *type*="image/x-icon" *href*="icone.ico">
-
-    <link *rel*="stylesheet" *href*="style.css">
-
+    <link rel="icon" type="image/x-icon" href="icone.ico">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    
 
-<header *class*="header">
+<header class="header">
 
-    <div *class*="logo-area">
+    <div class="logo-area">
 
-        <div *class*="logo">🏪</div>
+        <div class="logo">🏪</div>
 
         <div>
-
             <h1>MINHA CONVENIÊNCIA</h1>
-            
-            <div>2018</div>
-
             <p>Sistema de produtos e vendas</p>
-
         </div>
 
     </div>
 
-    <div *class*="relogio">🕐 <span *id*="relogio">00:00:00</span></div>
+    <div class="relogio">
+        🕐 <span id="relogio">00:00:00</span>
+    </div>
 
 </header>
 
-<nav *class*="menu">
+<main>
+<nav class="menu">
 
-    <button *class*="menu-btn ativo" *data-aba*="inicio">🏠 Início</button>
+    <button class="menu-btn ativo" data-aba="inicio" type="button">
+        🏠 Início
+    </button>
 
-    <button *class*="menu-btn" *data-aba*="vendas">💰 Vendas</button>
+    <button class="menu-btn" data-aba="vendas" type="button">
+        💰 Vendas
+    </button>
 
-    <button *class*="menu-btn" *data-aba*="relatorios">📊 Relatórios</button>
+    <button class="menu-btn" data-aba="caixa" type="button">
+        🏦 Caixa
+    </button>
+
+    <button class="menu-btn" data-aba="relatorios" type="button">
+        📊 Relatórios
+    </button>
+
+    <button
+    type="button"
+    id="abrirSugestaoPedido"
+    class="menu-btn">
+    📦 Sugestão de Pedido
+</button>
 
 </nav>
 
-<main>
+<!-- ==================================================
+     INÍCIO
+================================================== -->
 
-    <!-- INÍCIO -->
+<section id="aba-inicio" class="aba ativo">
 
-    <section *id*="aba-inicio" *class*="aba ativo">
+    <section class="pesquisa-card">
 
-        <section class="pesquisa-card">
+        <div class="icone-pesquisa">🔎</div>
 
-            <div class="icone-pesquisa">🔎</div>
+        <h2>Consultar produto</h2>
 
-            <h2>Consultar produto</h2>
+        <p>
+            Digite o nome do produto para consultar o preço
+        </p>
 
-            <p>Digite o nome do produto para consultar o preço</p>
+        <div class="pesquisa-box">
 
-            <div class="pesquisa-box">
+            <input
+                id="campoPesquisa"
+                type="text"
+                placeholder="Ex: Coca-Cola, Guaraná, Arroz..."
+                autocomplete="off"
+            >
 
-                <input id="campoPesquisa" type="text"
-
-                    placeholder="Ex: Coca-Cola, Guaraná, Arroz..."
-
-                    autocomplete="off">
-
-                <button id="limparPesquisa">✕</button>
-
-            </div>
-
-            <div id="resultado" class="resultado">
-
-                <div class="resultado-vazio">
-
-                    <span>🔎</span>
-
-                    <p>Digite um produto para começar</p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <section class="acoes-principais">
-
-            <button id="abrirCadastro" class="acao-card adicionar">
-
-                <span class="acao-icone">➕</span>
-
-                <div>
-
-                    <strong>Adicionar produto</strong>
-
-                    <small>Cadastrar novo produto</small>
-
-                </div>
-
+            <button
+                id="limparPesquisa"
+                type="button"
+            >
+                ✕
             </button>
 
-            <button id="abrirLista" class="acao-card lista">
+        </div>
 
-                <span class="acao-icone">📋</span>
+        <div id="resultado" class="resultado">
 
-                <div>
+            <div class="resultado-vazio">
 
-                    <strong>Lista de produtos</strong>
+                <span>🔎</span>
 
-                    <small>Ver produtos cadastrados</small>
-
-                </div>
-
-                <span id="quantidadeBadge" class="badge">0</span>
-
-            </button>
-
-        </section>
-
-        <section class="caixa-card">
-
-            <div class="caixa-icone">📦</div>
-
-            <div class="caixa-info">
-
-                <span>Valor total do estoque</span>
-
-                <strong id="valorTotal">R$ 0,00</strong>
+                <p>
+                    Digite um produto para começar
+                </p>
 
             </div>
 
-            <div class="caixa-produtos">
-
-                <span id="totalProdutos">0</span>
-
-                <small>produtos</small>
-
-            </div>
-
-        </section>
+        </div>
 
     </section>
 
-    <!-- VENDAS -->
 
-    <section id="aba-vendas" class="aba">
+    <section class="acoes-principais">
 
-        <div class="pagina-titulo">
+        <button
+            id="abrirCadastro"
+            class="acao-card adicionar"
+            type="button"
+        >
+
+            <span class="acao-icone">
+                ➕
+            </span>
 
             <div>
 
-                <h2>💰 Vendas</h2>
+                <strong>
+                    Adicionar produto
+                </strong>
 
-                <p>Registre uma nova venda e finalize o caixa.</p>
+                <small>
+                    Cadastrar novo produto
+                </small>
 
             </div>
 
-            <button id="limparCarrinho" class="botao-secundario">🗑️ Limpar venda</button>
-
-        </div>
-
-        <div class="vendas-grid">
-
-            <section class="painel">
-
-                <h3>Adicionar produto</h3>
-
-                <label for="produtoVenda">Produto</label>
-
-                <select id="produtoVenda"></select>
-
-                <label for="quantidadeVenda">Quantidade</label>
-
-                <div class="quantidade-linha">
-
-                    <button id="menosQuantidade">−</button>
-
-                    <input id="quantidadeVenda" type="number" min="1" value="1">
-
-                    <button id="maisQuantidade">+</button>
-
-                </div>
-
-                <button id="adicionarCarrinho" class="botao-principal">➕ Adicionar à venda</button>
-
-            </section>
-
-            <section class="painel">
-
-                <div class="painel-topo">
-
-                    <h3>🛒 Carrinho</h3>
-
-                    <span id="quantidadeItensCarrinho" class="badge">0</span>
-
-                </div>
-
-                <div id="carrinho" class="carrinho"></div>
-
-                <div class="total-venda">
-
-    <span>Subtotal</span>
-
-    <strong id="subtotalCarrinho">R$ 0,00</strong>
-
-</div>
-
-<div class="desconto-venda">
-
-    <label for="valorDesconto">🏷️ Desconto</label>
-
-    <div class="desconto-linha">
-
-        <span>R$</span>
-
-        <input
-
-            id="valorDesconto"
-
-            type="number"
-
-            min="0"
-
-            step="0.01"
-
-            value="0"
-
-            placeholder="0,00"
-
-        >
-
-        <button
-
-            type="button"
-
-            id="limparDesconto"
-
-            title="Remover desconto"
-
-        >
-
-            ✕
-
         </button>
 
-    </div>
-
-</div>
-
-<div class="total-venda total-final">
-
-    <span>Total com desconto</span>
-
-    <strong id="totalCarrinho">R$ 0,00</strong>
-
-</div>
-
-<div class="pagamento-venda">
-
-    <label>💳 Forma de pagamento</label>
-
-    <div class="formas-pagamento">
 
         <button
-
+            id="abrirLista"
+            class="acao-card lista"
             type="button"
-
-            class="forma-pagamento ativo"
-
-            data-pagamento="dinheiro"
-
         >
 
-            💵
-
-            <span>Dinheiro</span>
-
-        </button>
-
-        <button
-
-            type="button"
-
-            class="forma-pagamento"
-
-            data-pagamento="pix"
-
-        >
-
-            🟢
-
-            <span>PIX</span>
-
-        </button>
-
-        <button
-
-            type="button"
-
-            class="forma-pagamento"
-
-            data-pagamento="cartao"
-
-        >
-
-            💳
-
-            <span>Cartão</span>
-
-        </button>
-
-        <button
-
-            type="button"
-
-            class="forma-pagamento"
-
-            data-pagamento="fiado"
-
-        >
-
-            🕐
-
-            <span>Pagar depois</span>
-
-        </button>
-
-    </div>
-
-    <div id="areaDinheiro">
-
-        <label for="valorRecebido">
-
-            💵 Valor recebido
-
-        </label>
-
-        <input
-
-            id="valorRecebido"
-
-            type="number"
-
-            min="0"
-
-            step="0.01"
-
-            placeholder="Ex: 50,00"
-
-        >
-
-    </div>
-
-    <div class="resumo-pagamento">
-
-        <div>
-
-            <span>Subtotal:</span>
-
-            <strong id="pagamentoSubtotal">
-
-                R$ 0,00
-
-            </strong>
-
-        </div>
-
-        <div>
-
-            <span>Desconto:</span>
-
-            <strong id="pagamentoDesconto">
-
-                R$ 0,00
-
-            </strong>
-
-        </div>
-
-        <div>
-
-            <span>Total:</span>
-
-            <strong id="pagamentoTotal">
-
-                R$ 0,00
-
-            </strong>
-
-        </div>
-
-        <div id="areaTroco">
-
-            <span>Troco:</span>
-
-            <strong id="trocoVenda">
-
-                R$ 0,00
-
-            </strong>
-
-        </div>
-
-    </div>
-
-</div>
-
-<button
-
-    id="finalizarVenda"
-
-    class="botao-finalizar"
-
-    type="button"
-
->
-
-    ✅ Finalizar venda
-
-</button>
-
-
-
-            </section>
-
-        </div>
-
-        <section class="painel vendas-resumo">
-
-            <h3>Resumo de hoje</h3>
-
-            <div class="mini-cards">
-
-                <div><span>Vendas</span><strong id="vendasHoje">0</strong></div>
-
-                <div><span>Faturamento</span><strong id="faturamentoHoje">R$ 0,00</strong></div>
-
-                <div><span>Itens vendidos</span><strong id="itensHoje">0</strong></div>
+            <span class="acao-icone">
+                📋
+            </span>
+
+            <div>
+
+                <strong>
+                    Lista de produtos
+                </strong>
+
+                <small>
+                    Ver produtos cadastrados
+                </small>
 
             </div>
 
-        </section>
+            <span
+                id="quantidadeBadge"
+                class="badge"
+            >
+                0
+            </span>
+
+        </button>
 
     </section>
 
-    <!-- RELATÓRIOS -->
 
-    <section id="aba-relatorios" class="aba">
+    <!-- STATUS DO CAIXA -->
 
-        <div class="pagina-titulo">
+    <section class="caixa-status-card">
 
-            <div>
+        <div class="caixa-status-icone">
+            🏦
+        </div>
 
-                <h2>📊 Relatórios</h2>
+        <div class="caixa-status-info">
 
-                <p>Acompanhe as vendas e o estoque.</p>
+            <span>
+                Situação do caixa
+            </span>
 
-            </div>
+            <strong id="statusCaixa">
+                🔴 Caixa fechado
+            </strong>
 
-            <button id="limparVendas" class="botao-perigo">🗑️ Apagar histórico</button>
+            <small id="resumoCaixaInicio">
+                Abra o caixa para começar a vender.
+            </small>
 
         </div>
 
-        <div class="relatorio-cards">
+        <button
+            type="button"
+            class="botao-secundario"
+            id="irParaCaixa"
+        >
+            Abrir caixa
+        </button>
 
-            <div class="rel-card">
+    </section>
 
-                <span>💵 Total vendido</span>
 
-                <strong id="relTotalVendido">R$ 0,00</strong>
+    <section class="caixa-card">
 
-            </div>
+        <div class="caixa-icone">
+            📦
+        </div>
 
-            <div class="rel-card">
+        <div class="caixa-info">
 
-                <span>🧾 Total de vendas</span>
+            <span>
+                Valor total do estoque
+            </span>
 
-                <strong id="relQuantidadeVendas">0</strong>
-
-            </div>
-
-            <div class="rel-card">
-
-                <span>📅 Vendas hoje</span>
-
-                <strong id="relVendasHoje">0</strong>
-
-            </div>
-
-            <div class="rel-card">
-
-                <span>📦 Produtos cadastrados</span>
-
-                <strong id="relProdutos">0</strong>
-
-            </div>
+            <strong id="valorTotal">
+                R$ 0,00
+            </strong>
 
         </div>
 
-        <div class="relatorios-grid">
+        <div class="caixa-produtos">
 
-            <section class="painel">
+            <span id="totalProdutos">
+                0
+            </span>
 
-                <h3>🏆 Produtos mais vendidos</h3>
-
-                <div id="maisVendidos" class="rel-lista"></div>
-
-            </section>
-
-            <section class="painel">
-
-                <h3>⚠️ Estoque baixo</h3>
-
-                <p class="ajuda">Produtos com 5 unidades ou menos.</p>
-
-                <div id="estoqueBaixo" class="rel-lista"></div>
-
-            </section>
+            <small>
+                produtos
+            </small>
 
         </div>
+
+    </section>
+
+</section>
+
+
+<!-- ==================================================
+     VENDAS
+================================================== -->
+
+<section id="aba-vendas" class="aba">
+
+    <div class="pagina-titulo">
+
+        <div>
+
+            <h2>
+                💰 Vendas
+            </h2>
+
+            <p>
+                Registre uma nova venda.
+            </p>
+
+        </div>
+
+        <button
+            id="limparCarrinho"
+            class="botao-secundario"
+            type="button"
+        >
+            🗑️ Limpar venda
+        </button>
+
+    </div>
+
+
+    <!-- AVISO CAIXA -->
+
+    <div
+        id="avisoCaixaFechado"
+        class="aviso-caixa-fechado"
+    >
+
+        <span>
+            🔒
+        </span>
+
+        <div>
+
+            <strong>
+                Caixa fechado
+            </strong>
+
+            <p>
+                Abra o caixa antes de realizar vendas.
+            </p>
+
+        </div>
+
+        <button
+            type="button"
+            id="abrirCaixaVendas"
+            class="botao-principal"
+        >
+            🏦 Abrir caixa
+        </button>
+
+    </div>
+
+
+    <div class="vendas-grid">
+
+
+        <!-- ADICIONAR PRODUTO -->
 
         <section class="painel">
 
-            <h3>🧾 Histórico de vendas</h3>
+            <h3>
+                Adicionar produto
+            </h3>
 
-            <div class="tabela-container">
+            <label for="produtoVenda">
+                Produto
+            </label>
 
-                <table>
+            <select id="produtoVenda"></select>
 
-                    <thead>
 
-                        <tr>
+            <label for="quantidadeVenda">
+                Quantidade
+            </label>
 
-                            <th>Data</th>
+            <div class="quantidade-linha">
 
-                            <th>Itens</th>
+                <button
+                    id="menosQuantidade"
+                    type="button"
+                >
+                    −
+                </button>
 
-                            <th>Total</th>
+                <input
+                    id="quantidadeVenda"
+                    type="number"
+                    min="1"
+                    value="1"
+                >
 
-                            <th>Ação</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody id="historicoVendas"></tbody>
-
-                </table>
+                <button
+                    id="maisQuantidade"
+                    type="button"
+                >
+                    +
+                </button>
 
             </div>
+
+
+            <button
+                id="adicionarCarrinho"
+                class="botao-principal"
+                type="button"
+            >
+                ➕ Adicionar à venda
+            </button>
 
         </section>
 
+
+        <!-- CARRINHO -->
+
+        <section class="painel">
+
+            <div class="painel-topo">
+
+                <h3>
+                    🛒 Carrinho
+                </h3>
+
+                <span
+                    id="quantidadeItensCarrinho"
+                    class="badge"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div
+                id="carrinho"
+                class="carrinho"
+            ></div>
+
+
+            <!-- RESUMO -->
+
+            <div class="total-venda">
+
+                <div class="linha-total">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <strong id="subtotalCarrinho">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+
+                <!-- DESCONTO -->
+
+                <div class="desconto-venda">
+
+                    <label for="descontoVenda">
+                        🏷️ Desconto
+                    </label>
+
+                    <div class="desconto-input">
+
+                        <span>
+                            R$
+                        </span>
+
+                        <input
+                            id="descontoVenda"
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                            placeholder="0,00"
+                        >
+
+                    </div>
+
+                    <small>
+                        Informe o valor do desconto
+                    </small>
+
+                </div>
+
+
+                <!-- TOTAL -->
+
+                <div class="total-final">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="totalCarrinho">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- PAGAMENTO -->
+
+            <div class="pagamento-venda">
+
+                <label>
+                    💳 Forma de pagamento
+                </label>
+
+
+                <div class="formas-pagamento">
+
+                    <button
+                        type="button"
+                        class="forma-pagamento ativo"
+                        data-pagamento="dinheiro"
+                    >
+                        💵
+                        <span>Dinheiro</span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="forma-pagamento"
+                        data-pagamento="pix"
+                    >
+                        🟢
+                        <span>PIX</span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="forma-pagamento"
+                        data-pagamento="cartao"
+                    >
+                        💳
+                        <span>Cartão</span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="forma-pagamento"
+                        data-pagamento="fiado"
+                    >
+                        🕐
+                        <span>Pagar depois</span>
+                    </button>
+
+                </div>
+
+
+                <!-- DINHEIRO -->
+
+                <div id="areaDinheiro">
+
+                    <label for="valorRecebido">
+                        💵 Valor recebido
+                    </label>
+
+                    <input
+                        id="valorRecebido"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        placeholder="Ex: 50,00"
+                    >
+
+                </div>
+
+
+                <!-- RESUMO -->
+
+                <div class="resumo-pagamento">
+
+                    <div>
+
+                        <span>
+                            Total:
+                        </span>
+
+                        <strong id="pagamentoTotal">
+                            R$ 0,00
+                        </strong>
+
+                    </div>
+
+
+                    <div id="areaTroco">
+
+                        <span>
+                            Troco:
+                        </span>
+
+                        <strong id="trocoVenda">
+                            R$ 0,00
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                id="finalizarVenda"
+                class="botao-finalizar"
+                type="button"
+            >
+                ✅ Finalizar venda
+            </button>
+
+        </section>
+
+    </div>
+
+
+    <!-- RESUMO -->
+
+    <section class="painel vendas-resumo">
+
+        <h3>
+            Resumo de hoje
+        </h3>
+
+        <div class="mini-cards">
+
+            <div>
+
+                <span>
+                    Vendas
+                </span>
+
+                <strong id="vendasHoje">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Faturamento
+                </span>
+
+                <strong id="faturamentoHoje">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Itens vendidos
+                </span>
+
+                <strong id="itensHoje">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
     </section>
+
+</section>
+
+
+<!-- ==================================================
+     CAIXA
+================================================== -->
+
+<section id="aba-caixa" class="aba">
+
+    <div class="pagina-titulo">
+
+        <div>
+
+            <h2>
+                🏦 Caixa
+            </h2>
+
+            <p>
+                Controle a abertura, movimentação e fechamento do caixa.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- STATUS -->
+
+    <section class="caixa-principal-status">
+
+        <div class="status-caixa-grande">
+
+            <div
+                id="iconeStatusCaixa"
+                class="status-caixa-icone grande"
+            >
+                🔴
+            </div>
+
+            <div>
+
+                <span>
+                    SITUAÇÃO ATUAL
+                </span>
+
+                <strong id="statusCaixaGrande">
+                    Caixa fechado
+                </strong>
+
+                <small id="dataAberturaCaixa">
+                    Nenhum caixa aberto.
+                </small>
+
+            </div>
+
+        </div>
+
+        <div class="status-caixa-acoes">
+
+            <button
+                type="button"
+                id="botaoAbrirCaixa"
+                class="botao-finalizar"
+            >
+                🟢 Abrir caixa
+            </button>
+
+            <button
+                type="button"
+                id="botaoFecharCaixa"
+                class="botao-perigo"
+            >
+                🔴 Fechar caixa
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESUMO DO CAIXA -->
+
+    <div class="relatorio-cards caixa-cards">
+
+        <div class="rel-card">
+
+            <span>
+                💰 Valor de abertura
+            </span>
+
+            <strong id="caixaValorAbertura">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+
+        <div class="rel-card">
+
+            <span>
+                💵 Vendas em dinheiro
+            </span>
+
+            <strong id="caixaDinheiro">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+
+        <div class="rel-card">
+
+            <span>
+                📱 Vendas em PIX
+            </span>
+
+            <strong id="caixaPix">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+
+        <div class="rel-card">
+
+            <span>
+                💳 Vendas no cartão
+            </span>
+
+            <strong id="caixaCartao">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+
+        <div class="rel-card">
+
+            <span>
+                🕐 Pagar depois
+            </span>
+
+            <strong id="caixaFiado">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+
+        <div class="rel-card">
+
+            <span>
+                🧾 Total vendido
+            </span>
+
+            <strong id="caixaTotalVendido">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- DINHEIRO ESPERADO -->
+
+    <section class="painel painel-dinheiro-caixa">
+
+        <div class="caixa-dinheiro-header">
+
+            <div>
+
+                <h3>
+                    💵 Conferência do dinheiro
+                </h3>
+
+                <p>
+                    Valor que deveria estar fisicamente no caixa.
+                </p>
+
+            </div>
+
+            <strong id="dinheiroEsperado">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- HISTÓRICO -->
+
+    <section class="painel">
+
+        <div class="painel-topo">
+
+            <div>
+
+                <h3>
+                    📋 Histórico de fechamentos
+                </h3>
+
+                <p class="ajuda">
+                    Consulte os caixas encerrados anteriormente.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="tabela-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Abertura
+                        </th>
+
+                        <th>
+                            Fechamento
+                        </th>
+
+                        <th>
+                            Abertura
+                        </th>
+
+                        <th>
+                            Vendas
+                        </th>
+
+                        <th>
+                            Dinheiro
+                        </th>
+
+                        <th>
+                            Diferença
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="historicoCaixas">
+
+                    <tr>
+
+                        <td
+                            colspan="6"
+                            style="text-align:center;"
+                        >
+                            Nenhum fechamento registrado.
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</section>
+
+
+<!-- ==================================================
+     RELATÓRIOS
+================================================== -->
+
+ 
+<!-- =====================================================
+     MODAL - SUGESTÃO DE PEDIDO
+===================================================== -->
+
+<div id="modalSugestaoPedido" class="modal">
+
+    <div class="modal-conteudo modal-pedido">
+
+        <!-- =================================================
+             CABEÇALHO
+        ================================================== -->
+
+        <div class="modal-cabecalho">
+
+            <div class="modal-titulo">
+
+                <div class="modal-icone-pedido">
+                    📦
+                </div>
+
+                <div>
+                    <h2>
+                        Sugestão de Pedido
+                    </h2>
+
+                    <p>
+                        Analise suas vendas e veja quais produtos precisam ser repostos.
+                    </p>
+                </div>
+
+            </div>
+
+            <button
+                type="button"
+                id="fecharSugestaoPedido"
+                class="fechar"
+                aria-label="Fechar">
+                ✕
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             CONFIGURAÇÃO
+        ================================================== -->
+
+        <div class="pedido-configuracao">
+
+            <div class="campo">
+
+                <label for="diasEstoque">
+                    📦 Dias de estoque desejado
+                </label>
+
+                <input
+                    type="number"
+                    id="diasEstoque"
+                    value="7"
+                    min="1"
+                    max="90"
+                    step="1"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             BOTÃO CALCULAR
+        ================================================== -->
+
+        <div class="pedido-acoes">
+
+            <button
+                type="button"
+                id="calcularSugestaoPedido"
+                class="btn-principal">
+
+                🔄 Calcular sugestão
+
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             RESUMO
+        ================================================== -->
+
+        <div class="resumo-pedido">
+
+            <!-- PRODUTOS ANALISADOS -->
+
+            <div class="card-pedido">
+
+                <span>
+                    📊 Produtos analisados
+                </span>
+
+                <strong id="pedidoProdutosAnalisados">
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- PRODUTOS PARA PEDIR -->
+
+            <div class="card-pedido">
+
+                <span>
+                    🔥 Produtos para pedir
+                </span>
+
+                <strong id="pedidoQuantidadeItens">
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- QUANTIDADE TOTAL -->
+
+            <div class="card-pedido">
+
+                <span>
+                    📦 Quantidade sugerida
+                </span>
+
+                <strong id="pedidoQuantidadeTotal">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             LISTA DE PRODUTOS
+        ================================================== -->
+
+        <div class="pedido-lista-container">
+
+            <div class="titulo-lista-pedido">
+
+                <div>
+
+                    <h3>
+                        🛒 Produtos sugeridos
+                    </h3>
+
+                    <p>
+                        Produtos que precisam ser repostos.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div id="listaSugestaoPedido">
+
+                <div class="resultado-vazio">
+
+                    <span>
+                        📦
+                    </span>
+
+                    <p>
+                        Clique em "Calcular sugestão"
+                    </p>
+
+                    <small>
+                        O sistema irá analisar seu estoque e suas vendas.
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             RODAPÉ
+        ================================================== -->
+
+        <div class="modal-acoes">
+
+            <button
+                type="button"
+                id="fecharSugestaoPedido2"
+                class="btn-secundario">
+
+                Fechar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+    
+
+
+
+<section id="aba-relatorios" class="aba">
+<!-- =====================================================
+     RELATÓRIO POR DIA DA SEMANA
+===================================================== -->
+
+<div class="filtro-periodo-relatorio">
+    <div>
+        <label>Data inicial</label>
+        <input type="date" id="dataInicialRelatorio">
+    </div>
+
+    <div>
+        <label>Data final</label>
+        <input type="date" id="dataFinalRelatorio">
+    </div>
+
+    <button type="button" id="gerarRelatorioPeriodo">
+        📊 Gerar relatório
+    </button>
+</div>
+
+<div id="relatorioPeriodo"></div>
+
+
+    <div class="pagina-titulo">
+
+        <div>
+
+            <h2>
+                📊 Relatórios
+            </h2>
+
+            <p>
+                Acompanhe as vendas e o estoque.
+            </p>
+
+        </div>
+
+        <button
+            id="limparVendas"
+            class="botao-perigo"
+            type="button"
+        >
+            🗑️ Apagar histórico
+        </button>
+
+    </div>
+
+
+    
+
+
+        <div class="rel-card">
+
+            <span>
+                📦 Produtos cadastrados
+            </span>
+
+            <strong id="relProdutos">
+                0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+   <div class="relatorios-grid">
+
+    <!-- PRODUTOS MAIS VENDIDOS -->
+    <section class="painel">
+        <h3>
+            🏆 Produtos mais vendidos
+        </h3>
+
+        <div
+            id="maisVendidos"
+            class="rel-lista"
+        ></div>
+    </section>
+
+
+    <!-- ESTOQUE BAIXO -->
+    <section class="painel">
+        <h3>
+            ⚠️ Estoque baixo
+        </h3>
+
+        <p class="ajuda">
+            Produtos com 5 unidades ou menos.
+        </p>
+
+        <div
+            id="estoqueBaixo"
+            class="rel-lista"
+        ></div>
+    </section>
+
+
+    <!-- ESTOQUE ALTO -->
+    <section class="painel">
+        <h3>
+            📦 Estoque alto
+        </h3>
+
+        <p class="ajuda">
+            Produtos com 06 unidades ou mais.
+        </p>
+
+        <div
+            id="estoqueAlto"
+            class="rel-lista"
+        ></div>
+    </section>
+
+</div>
+
+
+    <section class="painel">
+
+        <h3>
+            🧾 Histórico de vendas
+        </h3>
+
+        <div class="tabela-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Data
+                        </th>
+
+                        <th>
+                            Itens
+                        </th>
+
+                        <th>
+                            Total
+                        </th>
+
+                        <th>
+                            Ação
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="historicoVendas"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</section>
 
 </main>
 
-<!-- MODAL CADASTRO -->
 
-<div id="modalCadastro" class="modal">
+<!-- ==================================================
+     MODAL ABERTURA DO CAIXA
+================================================== -->
+
+<div
+    id="modalAberturaCaixa"
+    class="modal"
+>
 
     <div class="modal-conteudo">
 
-        <button id="fecharCadastro" class="fechar">✕</button>
+        <button
+            id="fecharAberturaCaixa"
+            class="fechar"
+            type="button"
+        >
+            ✕
+        </button>
+
 
         <div class="modal-titulo">
 
-            <span>📦</span>
+            <span>
+                🟢
+            </span>
 
             <div>
 
-                <h2 id="tituloCadastro">Adicionar produto</h2>
+                <h2>
+                    Abrir caixa
+                </h2>
 
-                <p>Cadastre o produto, preço e estoque.</p>
+                <p>
+                    Informe o valor inicial disponível no caixa.
+                </p>
 
             </div>
 
         </div>
 
-        <label for="nomeProduto">Nome do produto</label>
 
-        <input id="nomeProduto" type="text" placeholder="Ex: Coca-Cola">
+        <label for="valorAbertura">
+            💵 Dinheiro inicial
+        </label>
 
-        <label for="precoProduto">Preço</label>
+        <input
+            id="valorAbertura"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="Ex: 100,00"
+        >
 
-        <input id="precoProduto" type="number" step="0.01" min="0" placeholder="Ex: 6,00">
 
-        <label for="estoqueProduto">Estoque</label>
+        <p class="ajuda caixa-ajuda">
 
-        <input id="estoqueProduto" type="number" step="1" min="0" placeholder="Ex: 20">
+            Esse valor será considerado como
+            dinheiro inicial do caixa.
 
-        <button id="salvarProduto" class="botao-salvar">➕ Adicionar produto</button>
+        </p>
+
+
+        <button
+            id="confirmarAberturaCaixa"
+            class="botao-finalizar"
+            type="button"
+        >
+            🟢 Confirmar abertura
+        </button>
 
     </div>
 
 </div>
 
-<!-- MODAL LISTA -->
 
-<div id="modalLista" class="modal">
+<!-- ==================================================
+     MODAL FECHAMENTO DO CAIXA
+================================================== -->
+
+<div
+    id="modalFechamentoCaixa"
+    class="modal"
+>
+
+    <div class="modal-conteudo fechamento-modal">
+
+        <button
+            id="fecharModalFechamento"
+            class="fechar"
+            type="button"
+        >
+            ✕
+        </button>
+
+
+        <div class="modal-titulo">
+
+            <span>
+                🔴
+            </span>
+
+            <div>
+
+                <h2>
+                    Fechar caixa
+                </h2>
+
+                <p>
+                    Confira os valores antes de encerrar.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="fechamento-resumo">
+
+            <div>
+
+                <span>
+                    Valor de abertura
+                </span>
+
+                <strong id="fechamentoAbertura">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Vendas em dinheiro
+                </span>
+
+                <strong id="fechamentoDinheiro">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Total vendido
+                </span>
+
+                <strong id="fechamentoTotal">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Dinheiro esperado
+                </span>
+
+                <strong id="fechamentoEsperado">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <label for="dinheiroContado">
+            💵 Dinheiro contado no caixa
+        </label>
+
+        <input
+            id="dinheiroContado"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="Ex: 350,00"
+        >
+
+
+        <div class="resultado-fechamento">
+
+            <span>
+                Diferença
+            </span>
+
+            <strong id="diferencaFechamento">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+
+        <label for="observacaoFechamento">
+            📝 Observação
+        </label>
+
+        <textarea
+            id="observacaoFechamento"
+            rows="3"
+            placeholder="Observação opcional..."
+        ></textarea>
+
+
+        <button
+            id="confirmarFechamentoCaixa"
+            class="botao-perigo"
+            type="button"
+        >
+            🔴 Confirmar fechamento
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     MODAL CADASTRO
+================================================== -->
+
+<div
+    id="modalCadastro"
+    class="modal"
+>
+
+    <div class="modal-conteudo">
+
+        <button
+            id="fecharCadastro"
+            class="fechar"
+            type="button"
+        >
+            ✕
+        </button>
+
+
+        <div class="modal-titulo">
+
+            <span>
+                📦
+            </span>
+
+            <div>
+
+                <h2 id="tituloCadastro">
+                    Adicionar produto
+                </h2>
+
+                <p>
+                    Cadastre o produto, preço e estoque.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <label for="nomeProduto">
+            Nome do produto
+        </label>
+
+        <input
+            id="nomeProduto"
+            type="text"
+            placeholder="Ex: Coca-Cola"
+        >
+
+
+        <label for="custoProduto">
+    💰 Preço de custo
+</label>
+<input
+    id="custoProduto"
+    type="number"
+    step="0.01"
+    min="0"
+    placeholder="Ex: 4,00"
+>
+
+<label for="precoProduto">
+    🏷️ Preço de venda
+</label>
+<input
+    id="precoProduto"
+    type="number"
+    step="0.01"
+    min="0"
+    placeholder="Ex: 6,00"
+>
+
+<div class="lucro-preview">
+    📈 Lucro por unidade:
+    <strong id="lucroProdutoPreview">R$ 0,00</strong>
+</div>
+
+
+        <label for="estoqueProduto">
+            Estoque
+        </label>
+
+        <input
+            id="estoqueProduto"
+            type="number"
+            step="1"
+            min="0"
+            placeholder="Ex: 20"
+        >
+
+
+        <button
+            id="salvarProduto"
+            class="botao-salvar"
+            type="button"
+        >
+            ➕ Adicionar produto
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     MODAL LISTA
+================================================== -->
+
+<div
+    id="modalLista"
+    class="modal"
+>
 
     <div class="modal-conteudo lista-modal">
 
-        <button id="fecharLista" class="fechar">✕</button>
+        <button
+            id="fecharLista"
+            class="fechar"
+            type="button"
+        >
+            ✕
+        </button>
+
 
         <div class="modal-titulo">
 
-            <span>📋</span>
+            <span>
+                📋
+            </span>
 
             <div>
 
-                <h2>Lista de produtos</h2>
+                <h2>
+                    Lista de produtos
+                </h2>
 
-                <p>Produtos cadastrados</p>
+                <p>
+                    Produtos cadastrados
+                </p>
 
             </div>
 
         </div>
 
-        <div id="listaProdutos" class="lista-produtos"></div>
+
+        <div
+            id="listaProdutos"
+            class="lista-produtos"
+        ></div>
 
     </div>
 
 </div>
 
-<!-- MODAL DETALHES VENDA -->
 
-<div id="modalVenda" class="modal">
+<!-- ==================================================
+     MODAL DETALHES VENDA
+================================================== -->
+
+<div
+    id="modalVenda"
+    class="modal"
+>
 
     <div class="modal-conteudo">
 
-        <button id="fecharVenda" class="fechar">✕</button>
+        <button
+            id="fecharVenda"
+            class="fechar"
+            type="button"
+        >
+            ✕
+        </button>
+
 
         <div class="modal-titulo">
 
-            <span>🧾</span>
+            <span>
+                🧾
+            </span>
 
             <div>
 
-                <h2>Detalhes da venda</h2>
+                <h2>
+                    Detalhes da venda
+                </h2>
 
                 <p id="detalheVendaData"></p>
 
@@ -652,18 +1699,31 @@
 
         </div>
 
+
         <div id="detalhesVenda"></div>
 
     </div>
 
 </div>
 
-<div id="notificacao" class="notificacao">Produto salvo!</div>
 
-<footer>🏪 Minha Conveniência • Sistema local</footer>
+<!-- ==================================================
+     NOTIFICAÇÃO
+================================================== -->
+
+<div
+    id="notificacao"
+    class="notificacao"
+>
+    Produto salvo!
+</div>
+
+
+<footer>
+    🏪 Minha Conveniência • Sistema local
+</footer>
+
 
 <script src="script.js"></script>
 
 </body>
-
-</html>
